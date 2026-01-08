@@ -1,5 +1,23 @@
+#let lingo-panel(color, text, show-ans, ans-length, thickness) = {
+	grid.cell(
+		fill: gray.darken(75%),
+		stroke: thickness + if color == white { gray.lighten(50%) } else { color },
+		inset: 10pt,
+		align: center + horizon,
+		[
+			#show: upper
+			#text
+
+			#if show-ans {
+				v(1fr)
+				ans-length.map(x => { x * "-" }).join(" ")
+			}
+		]
+	)
+}
+
 #let lingo-stack-puzzle(high-color, high-text, mid-color, mid-text, low-color, low-text, answer-length, block-size: 3cm, thickness: 2pt) = {
-	set text(fill: white, font: "Inter")
+	set text(fill: white)
 	let (high-show-ans, mid-show-ans, low-show-ans) = (false, true, false)
 	if mid-text == none {
 		if high-text == none {
@@ -8,40 +26,11 @@
 			(high-show-ans, mid-show-ans) = (true, false)
 		}
 	}
-	let (high-color-actual, mid-color-actual, low-color-actual) = (high-color, mid-color, low-color).map(color => { if color == white {gray.lighten(50%)} else {color} })
+
 	grid(
 		columns: block-size,
-		rows: (block-size, block-size, block-size),
-		align: center + horizon,
+		rows: (block-size,) * 3,
 		gutter: thickness,
-		fill: gray.darken(75%),
-		grid.cell(
-			stroke: (top: thickness + high-color-actual, bottom: thickness + high-color-actual, left: thickness + high-color-actual, right: thickness + high-color-actual),
-			[
-				#high-text\
-				#if high-show-ans {
-					"-" * answer-length
-				}
-			]
-		),
-		grid.cell(
-			stroke: (top: thickness + mid-color-actual, bottom: thickness + mid-color-actual, left: thickness + mid-color-actual, right: thickness + mid-color-actual),
-			[
-				#mid-text
-				
-				#if mid-show-ans {
-					answer-length.map(x => {x * "-"}).join(" ")
-				}
-			]
-		),
-		grid.cell(
-			stroke: (top: thickness + low-color-actual, bottom: thickness + low-color-actual, left: thickness + low-color-actual, right: thickness + low-color-actual),
-			[
-				#low-text\
-				#if low-show-ans {
-					"-" * answer-length
-				}
-			]
-		),
+		..((high-color, high-text, high-show-ans), (mid-color, mid-text, mid-show-ans), (low-color, low-text, low-show-ans)).map(it => lingo-panel(..it, answer-length, thickness))
 	)
 }
