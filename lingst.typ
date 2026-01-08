@@ -10,7 +10,7 @@
 
 			#if show-ans {
 				v(1fr)
-				ans-length.map(x => { x * "-" }).join(" ")
+				ans-length.map(x => if x <= 15 { x * "-" } else { "(" + str(x) + ")" }).join(" ")
 			}
 		]
 	)
