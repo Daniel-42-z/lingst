@@ -9,14 +9,13 @@
 			#text
 
 			#if show-ans {
-				v(1fr)
 				ans-length.map(x => if x <= 15 { x * "-" } else { "(" + str(x) + ")" }).join(" ")
 			}
 		]
 	)
 }
 
-#let lingo-stack-puzzle(high-color, high-text, mid-color, mid-text, low-color, low-text, answer-length, block-size: 3cm, thickness: 2pt) = {
+#let lingo-stack-puzzle(high-color, high-text, mid-color, mid-text, low-color, low-text, answer-length, block-size: 3cm, thickness: 5pt) = {
 	set text(fill: white)
 	let (high-show-ans, mid-show-ans, low-show-ans) = (false, true, false)
 	if mid-text == none {

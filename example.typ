@@ -1,4 +1,5 @@
 #import "lingst.typ": *
+#import "@preview/whalogen:0.3.0": *
 
 #set text(font: "Inter")
 
@@ -8,3 +9,12 @@
 	red, "nuclear war",
 	(16, 9, 7)
 ) // Answer: IntercOntinental baLlistiC missile
+
+\
+#lingo-stack-puzzle(
+	none, none,
+	blue, "IOLC",
+	rgb("8ee53f"), [#text(size: 9pt)[#ce("2HI -> H2 + I2")]],
+	(11,)
+) // Answer: bImOLeCular
+
