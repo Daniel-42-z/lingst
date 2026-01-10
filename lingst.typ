@@ -1,3 +1,7 @@
+#let kiwi = rgb("8ee53f")
+#let magenta = rgb("ff00ff")
+#let mint = rgb("40ffbf")
+
 #let lingo-panel(color, text, show-ans, ans-length, thickness) = {
 	grid.cell(
 		fill: gray.darken(75%),

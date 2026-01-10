@@ -14,7 +14,7 @@
 #lingo-stack-puzzle(
 	none, none,
 	blue, "IOLC",
-	rgb("8ee53f"), [#text(size: 9pt)[#ce("2HI -> H2 + I2")]],
+	kiwi, [#text(size: 9pt)[#ce("2HI -> H2 + I2")]],
 	(11,)
 ) // Answer: bImOLeCular
 
