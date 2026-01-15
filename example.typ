@@ -18,3 +18,12 @@
 	(11,)
 ) // Answer: bImOLeCular
 
+\
+#lingo-pipe-puzzle(
+	(("high", blue),
+	("mid", red),
+	("low", white)),
+	"fff",
+	(7,)
+)
+

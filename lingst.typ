@@ -1,9 +1,12 @@
 #let kiwi = rgb("8ee53f")
 #let magenta = rgb("ff00ff")
 #let mint = rgb("40ffbf")
+#let height(x) = { if x == 0 or x == 1 or x == 2 { x } else if x == "high" { 0 } else if x == "mid" { 1 } else { 2 } }
 
-#let lingo-panel(color, text, show-ans, ans-length, thickness) = {
+#let lingo-panel(x, y, color, text, show-ans, ans-length, thickness) = {
 	grid.cell(
+		x: x,
+		y: y,
 		fill: gray.darken(75%),
 		stroke: thickness + if color == white { gray.lighten(50%) } else { color },
 		inset: 10pt,
@@ -30,10 +33,52 @@
 		}
 	}
 
-	grid(
-		columns: block-size,
-		rows: (block-size,) * 3,
-		gutter: thickness,
-		..((high-color, high-text, high-show-ans), (mid-color, mid-text, mid-show-ans), (low-color, low-text, low-show-ans)).map(it => lingo-panel(..it, answer-length, thickness))
+	box(
+		grid(
+		    columns: block-size,
+		    rows: (block-size,) * 3,
+		    gutter: thickness,
+		    ..((0, 0, high-color, high-text, high-show-ans), (0, 1, mid-color, mid-text, mid-show-ans), (0, 2, low-color, low-text, low-show-ans)).map(it => lingo-panel(..it, answer-length, thickness))
+		    )
+	)
+}
+
+#let lingo-pipe-puzzle(height-color-list, puzzle-text, ans-length, block-size: 3cm, thickness: 5pt) = {
+	set text(fill: white)
+	let puzzle-length = height-color-list.len()
+	box(
+		grid(
+			columns: (block-size,) * (2 * puzzle-length - 1),
+			rows: (block-size,) * 3,
+			gutter: thickness,
+			lingo-panel(
+				0, height(height-color-list.at(0).at(0)),
+				height-color-list.at(0).at(1),
+				puzzle-text,
+				true,
+				ans-length,
+				thickness
+			),
+			..range(1, 2 * puzzle-length - 1, step: 2).map(col =>
+				grid.cell(
+					x: col,
+					y: 0,
+					rowspan: 3,
+					fill: white,
+					stroke: thickness + black,
+					[]
+				)
+			),
+			..range(1, puzzle-length).map(i => {
+				let color = height-color-list.at(i).at(1)
+				grid.cell(
+					x: 2 * i,
+					y: height(height-color-list.at(i).at(0)),
+					fill: color,
+					stroke: thickness + if color == white { black } else { color },
+					[]
+				)
+			})
+		)
 	)
 }
