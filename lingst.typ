@@ -14,11 +14,11 @@
 	}).join(" ")
 }
 
-#let lingo-panel(x, y, color, text, show-ans, ans-length, thickness) = {
+#let lingo-panel(x, y, color, puzzle-text, show-ans, ans-length, thickness) = {
 	let stroke-color = if color == white { gray.lighten(50%) } else { color }
 	let body = [
 		#show: upper
-		#text
+		#puzzle-text
 		#if show-ans { format-ans(ans-length) }
 	]
 
