@@ -21,6 +21,7 @@
 \
 #lingo-pipe-puzzle(
 	(("high", blue),
+	("high", white),
 	("mid", red),
 	("low", white)),
 	"fff",

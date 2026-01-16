@@ -45,40 +45,48 @@
 
 #let lingo-pipe-puzzle(height-color-list, puzzle-text, ans-length, block-size: 3cm, thickness: 5pt) = {
 	set text(fill: white)
-	let puzzle-length = height-color-list.len()
+	let layout = (height-color-list.at(0),)
+	for i in range(1, height-color-list.len()) {
+		if height(height-color-list.at(i).at(0)) != height(height-color-list.at(i - 1).at(0)) {
+			layout.push(0)
+		}
+		layout.push(height-color-list.at(i))
+	}
 	box(
 		grid(
-			columns: (block-size,) * (2 * puzzle-length - 1),
+			columns: (block-size,) * (layout.len()),
 			rows: (block-size,) * 3,
 			gutter: thickness,
-			lingo-panel(
-				0, height(height-color-list.at(0).at(0)),
-				height-color-list.at(0).at(1),
-				puzzle-text,
-				true,
-				ans-length,
-				thickness
-			),
-			..range(1, 2 * puzzle-length - 1, step: 2).map(col =>
-				grid.cell(
-					x: col,
-					y: 0,
-					rowspan: 3,
-					fill: white,
-					stroke: thickness + black,
-					[]
-				)
-			),
-			..range(1, puzzle-length).map(i => {
-				let color = height-color-list.at(i).at(1)
-				grid.cell(
-					x: 2 * i,
-					y: height(height-color-list.at(i).at(0)),
-					fill: color,
-					stroke: thickness + if color == white { black } else { color },
-					[]
-				)
-			})
+			..range(layout.len()).map(i => {
+				if i == 0 {
+					lingo-panel(
+						0, height(layout.at(0).at(0)),
+						layout.at(0).at(1),
+						puzzle-text,
+						true,
+						ans-length,
+						thickness
+					)
+				} else if layout.at(i) == 0 {
+					grid.cell(
+						x: i,
+						y: 0,
+						rowspan: 3,
+						fill: white,
+						stroke: thickness + black,
+						[]
+					)
+				} else {
+					let color = layout.at(i).at(1)
+					grid.cell(
+						x: i,
+						y: height(layout.at(i).at(0)),
+						fill: color,
+						stroke: thickness + if color == white { black } else { color },
+						[]
+					)
+				}
+			}),
 		)
 	)
 }
