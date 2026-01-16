@@ -20,11 +20,11 @@
 
 \
 #lingo-pipe-puzzle(
-	(("high", blue),
+	(("low", red),
 	("high", white),
-	("mid", red),
-	("low", white)),
-	"fff",
-	(7,)
+	("mid", blue)),
+	"face",
+	(2,),
+	block-size: 2cm
 )
 

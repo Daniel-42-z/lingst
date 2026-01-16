@@ -1,7 +1,7 @@
 #let kiwi = rgb("8ee53f")
 #let magenta = rgb("ff00ff")
 #let mint = rgb("40ffbf")
-#let height(x) = { if x == 0 or x == 1 or x == 2 { x } else if x == "high" { 0 } else if x == "mid" { 1 } else { 2 } }
+#let height(x) = { if x == 0 or x == 1 or x == 2 { x } else if x == "high" { 0 } else if x == "mid" { 1 } else if x == "middle" { 1 } else { 2 } }
 
 #let lingo-panel(x, y, color, text, show-ans, ans-length, thickness) = {
 	grid.cell(
