@@ -79,6 +79,11 @@
 		layout.push(height-color-list.at(i))
 	}
 
+	let need-end-pillar = layout.filter(piece => piece == 0).len()
+	if need-end-pillar == 0 {
+		layout.push(0)
+	}
+
 	let cells = range(layout.len()).map(i => {
 		let item = layout.at(i)
 		if i == 0 {

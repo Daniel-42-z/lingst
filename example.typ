@@ -28,3 +28,10 @@
 	block-size: 2cm
 )
 
+#lingo-pipe-puzzle(
+	(("mid", blue),
+	("mid", yellow)),
+	"ff",
+	(3,)
+)
+
