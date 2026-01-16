@@ -3,6 +3,11 @@
 
 #set text(font: "Inter")
 
+#lingo-single-puzzle(
+	"high", white, "high", (2,)
+)
+
+\
 #lingo-stack-puzzle(
 	purple, "incidental linguistic dismissal",
 	blue, "iolc",
@@ -21,17 +26,8 @@
 \
 #lingo-pipe-puzzle(
 	(("low", red),
-	("high", white),
 	("mid", blue)),
-	"face",
-	(2,),
-	block-size: 2cm
-)
-
-#lingo-pipe-puzzle(
-	(("mid", blue),
-	("mid", yellow)),
-	"ff",
-	(3,)
-)
-
+	"italy",
+	(9,),
+	block-size: 3cm
+) // Answer: metROnoME
