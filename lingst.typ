@@ -33,24 +33,6 @@
 	)
 }
 
-#let lingo-single-puzzle(
-	height, color, puzzle-text, answer-length, block-size: 3cm, thickness: 5pt
-) = {
-	box(grid(
-		columns: block-size,
-		rows: block-size * 3,
-		grid.cell(
-			x: 0, y: 0,
-			stroke: thickness + black,
-			grid(
-				columns: 100%,
-				rows: (1fr, 1fr, 1fr),
-				lingo-panel(0, parse-height(height), color, puzzle-text, true, answer-length, thickness)
-			)
-		),
-	))
-}
-
 #let lingo-stack-puzzle(
 	high-color, high-text,
 	mid-color, mid-text,
@@ -75,9 +57,17 @@
 
 	box(grid(
 		columns: block-size,
-		rows: (block-size,) * 3,
-		gutter: thickness,
-		..panels.map(it => lingo-panel(..it, answer-length, thickness))
+		rows: block-size * 3,
+		grid.cell(
+			x: 0, y: 0,
+			stroke: thickness + black,
+			grid(
+				columns: 100%,
+				rows: (1fr,) * 3,
+				gutter: thickness,
+				..panels.map(it => if it.at(2) == none { none } else { lingo-panel(..it, answer-length, thickness) })
+			)
+		)
 	))
 }
 
