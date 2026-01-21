@@ -4,19 +4,19 @@
 #set text(font: "Inter")
 
 #lingo-stack-puzzle(
-	purple, "incidental linguistic dismissal",
-	blue, "iolc",
-	red, "nuclear war",
-	(16, 9, 7)
-) // Answer: IntercOntinental baLlistiC missile
+	purple, "incidental",
+	blue, "ice",
+	magenta, "missile",
+	(16,)
+) // Answer: InterContinEntal
 
 \
 #lingo-stack-puzzle(
 	none, none,
-	blue, "IOLC",
+	blue, "ice",
 	kiwi, [#text(size: 9pt)[#ce("2HI -> H2 + I2")]],
-	(11,)
-) // Answer: bImOLeCular
+	(10,)
+) // Answer: bImoleCulE
 
 \
 #lingo-pipe-puzzle(
